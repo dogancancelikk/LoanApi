@@ -1,0 +1,74 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="create-role-lookup-table" author="dogancancelik">
+        <createTable tableName="lkp_role">
+            <column name="code" type="VARCHAR(20)">
+                <constraints primaryKey="true" nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <insert tableName="lkp_role">
+            <column name="code" value="ROLE_CUSTOMER"/>
+        </insert>
+        <insert tableName="lkp_role">
+            <column name="code" value="ROLE_ADMIN"/>
+        </insert>
+        <rollback>
+            <dropTable tableName="sesa_lkp_restriction_reason"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="create-bank_user-table" author="dogancan">
+        <createTable tableName="bank_user">
+            <column name="user_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+
+            <column name="password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="bank_user" baseColumnNames="role"
+                                 referencedTableName="lkp_role" referencedColumnNames="code"
+                                 constraintName="fk-bank_user-lkp_role"/>
+
+    </changeSet>
+    <changeSet id="1.0" author="dogancan">
+        <createTable tableName="customer">
+            <column name="customer_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credit_limit" type="decimal(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="used_credit_limit" type="decimal(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="customer"
+                baseColumnNames="user_id"
+                referencedTableName="bank_user"
+                referencedColumnNames="user_id"
+                constraintName="fk-customer-bank_user"/>
+    </changeSet>
+</databaseChangeLog>
