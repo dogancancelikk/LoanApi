@@ -9,4 +9,7 @@ public class ApiEndpoints {
     public static final String ID = "/{id}";
     public static final String AUTH = "/auth";
     public static final String TOKEN = "/token";
+    public static final String LOAN = "/loan";
+    public static final String LOAN_ID = "/{loanId}";
+    public static final String INSTALLMENTS = "/installments";
 }

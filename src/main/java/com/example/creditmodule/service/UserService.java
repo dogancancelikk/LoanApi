@@ -3,9 +3,10 @@ package com.example.creditmodule.service;
 
 import com.example.creditmodule.entity.UserEntity;
 import com.example.creditmodule.entity.lookup.UserRole;
+import com.example.creditmodule.exception.ApiException;
 import com.example.creditmodule.repository.UserRepository;
-import com.example.creditmodule.request.CreateAdminRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public UserEntity createCustomerUser(String username, String password) {
         if (userRepository.existsByUsername(username)) {
-            throw new RuntimeException("Username already exists");
+            throw new ApiException("Username already exists", HttpStatus.BAD_REQUEST);
         }
         UserEntity user = new UserEntity();
         user.setId(UUID.randomUUID());

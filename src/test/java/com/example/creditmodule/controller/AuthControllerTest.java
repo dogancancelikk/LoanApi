@@ -1,21 +1,22 @@
 package com.example.creditmodule.controller;
 
-import com.example.creditmodule.IntegrationTestBase;
+import com.example.creditmodule.TestBase;
+import com.example.creditmodule.TestData;
 import com.example.creditmodule.request.TokenRequest;
 import com.example.creditmodule.util.ApiEndpoints;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.github.springtestdbunit.annotation.DatabaseOperation;
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-class AuthControllerTest extends IntegrationTestBase {
+class AuthControllerTest extends TestBase {
 
     @Test
+    @DatabaseSetup(value = TestData.DEFAULT, type = DatabaseOperation.CLEAN_INSERT)
+    @DatabaseSetup(value = TestData.ADMIN_USER, type = DatabaseOperation.CLEAN_INSERT)
     void token() throws Exception {
         TokenRequest request = TokenRequest
                 .builder()
@@ -33,6 +34,8 @@ class AuthControllerTest extends IntegrationTestBase {
 
 
     @Test
+    @DatabaseSetup(value = TestData.DEFAULT, type = DatabaseOperation.CLEAN_INSERT)
+    @DatabaseSetup(value = TestData.ADMIN_USER, type = DatabaseOperation.CLEAN_INSERT)
     void shouldThrowExceptionWithIncorrectPassword() throws Exception {
         TokenRequest request = TokenRequest
                 .builder()

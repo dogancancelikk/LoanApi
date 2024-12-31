@@ -4,6 +4,7 @@ package com.example.creditmodule.security;
 import com.example.creditmodule.entity.CustomerEntity;
 import com.example.creditmodule.entity.UserEntity;
 import com.example.creditmodule.entity.lookup.UserRole;
+import com.example.creditmodule.exception.ApiException;
 import com.example.creditmodule.response.TokenResponse;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -12,14 +13,17 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authorization.AuthorizationDeniedException;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 @Component
@@ -54,7 +58,7 @@ public class JwtService {
         }
         UUID customerIdInToken = getCustomerId(request);
         if (!customerIdInToken.equals(customerId)) {
-            throw new AuthorizationDeniedException("Customer is not authorized to access this resource");
+            throw new ApiException("Customer is not authorized to access this resource", HttpStatus.FORBIDDEN);
         }
     }
 

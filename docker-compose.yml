@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  loan-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: loan-api
+    environment:
+      - PROFILE=test
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin
+      - JWT_SECRET=3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
+      - JAVA_OPTS=-Xmx512m
+      - SPRING_DATASOURCE_URL=jdbc:h2:file:/h2_data/creditmodule;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    volumes:
+      - ./h2_data:/data
+    ports:
+      - "2727:2727"
+    restart: unless-stopped

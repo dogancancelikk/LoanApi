@@ -71,4 +71,72 @@
                 referencedColumnNames="user_id"
                 constraintName="fk-customer-bank_user"/>
     </changeSet>
+    <changeSet id="create-loan-table" author="dogancancelik">
+        <createTable tableName="loan">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="customer_id" type="UUID">
+                <constraints nullable="false" />
+            </column>
+            <column name="loan_amount" type="DECIMAL(15,2)">
+                <constraints nullable="false" />
+            </column>
+            <column name="interest_rate" type="DECIMAL(5,3)">
+                <constraints nullable="false" />
+            </column>
+            <column name="number_of_installment" type="INT">
+                <constraints nullable="false" />
+            </column>
+            <column name="create_date" type="DATE">
+                <constraints nullable="false" />
+            </column>
+            <column name="is_paid" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="loan"
+                baseColumnNames="customer_id"
+                referencedTableName="customer"
+                referencedColumnNames="customer_id"
+                constraintName="fk-loan-customer" />
+
+    </changeSet>
+    <changeSet id="create-loan_installment-table" author="dogancancelik">
+        <createTable tableName="loan_installment">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="loan_id" type="UUID">
+                <constraints nullable="false" />
+            </column>
+            <column name="amount" type="DECIMAL(15,2)">
+                <constraints nullable="false" />
+            </column>
+            <column name="paid_amount" type="DECIMAL(15,2)" defaultValue="0.00">
+                <constraints nullable="false" />
+            </column>
+            <column name="due_date" type="DATE">
+                <constraints nullable="false" />
+            </column>
+            <column name="payment_date" type="DATE">
+            </column>
+            <column name="is_paid" type="BOOLEAN" defaultValueBoolean="false">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <!-- Add Foreign Key Constraint to loan -->
+        <addForeignKeyConstraint
+                baseTableName="loan_installment"
+                baseColumnNames="loan_id"
+                referencedTableName="loan"
+                referencedColumnNames="id"
+                constraintName="fk-loan_installment-loan" />
+
+    </changeSet>
+
+
 </databaseChangeLog>

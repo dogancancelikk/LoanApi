@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<dataset>
+    <loan id="484c13bb-14df-4c47-a88a-234375efbb5d"
+          customer_id="cd4c88f4-c2e2-4b38-83dd-be00a65cea4a"
+          loan_amount="20.0"
+          number_of_installment="6"
+          interest_rate="0.3"
+          is_paid="false"
+          create_date="2024-07-02"
+    />
+    <loan_installment
+          id="9bba4304-e254-4ef0-b1a1-6f0cf6e52356"
+          loan_id="484c13bb-14df-4c47-a88a-234375efbb5d"
+          amount="25.0"
+          due_date="2024-07-04"
+    />
+    <loan id="45a99b29-e367-4ff2-adf4-e45eb343a31c"
+          customer_id="cd4c88f4-c2e2-4b38-83dd-be00a65cea4a"
+          loan_amount="20.0"
+          number_of_installment="9"
+          interest_rate="0.3"
+          is_paid="false"
+          create_date="2024-07-03"
+    />
+    <loan_installment
+            id="55047c65-dcbe-4db2-873b-43df8be4ce60"
+            loan_id="45a99b29-e367-4ff2-adf4-e45eb343a31c"
+            amount="25.0"
+            due_date="2024-07-04"
+    />
+    <loan id="326e877e-cf5a-40ee-82b7-78a6af03279c"
+          customer_id="cd4c88f4-c2e2-4b38-83dd-be00a65cea4a"
+          loan_amount="25.0"
+          number_of_installment="12"
+          interest_rate="0.3"
+          is_paid="true"
+          create_date="2024-07-04"
+    />
+    <loan_installment
+            id="d88c4fe4-939c-46bb-a551-73540af950c9"
+            loan_id="326e877e-cf5a-40ee-82b7-78a6af03279c"
+            amount="25.0"
+            due_date="2024-07-04"
+    />
+</dataset>

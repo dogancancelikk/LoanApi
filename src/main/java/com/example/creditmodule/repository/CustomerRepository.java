@@ -1,7 +1,6 @@
 package com.example.creditmodule.repository;
 
 import com.example.creditmodule.entity.CustomerEntity;
-import com.example.creditmodule.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

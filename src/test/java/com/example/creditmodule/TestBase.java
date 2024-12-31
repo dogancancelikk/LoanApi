@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
         DbUnitTestExecutionListener.class
 })
 @DbUnitConfiguration(databaseConnection = "dbUnitDatabaseConnection")
-public abstract class IntegrationTestBase {
+public abstract class TestBase {
     @Value("${application.admin.username}")
     protected String ADMIN_USERNAME;
 
@@ -33,6 +33,8 @@ public abstract class IntegrationTestBase {
 
     protected String CUSTOMER_USERNAME = "test-customer-user";
     protected String CUSTOMER_PASSWORD = "test-password";
+    protected String SECOND_CUSTOMER_USERNAME = "test-customer-user2";
+    protected String CUSTOMER_ID = "cd4c88f4-c2e2-4b38-83dd-be00a65cea4a";
 
     @Autowired
     protected MockMvc mockMvc;
@@ -55,6 +57,9 @@ public abstract class IntegrationTestBase {
 
     public TokenResponse getTokenForCustomer() throws Exception {
         return authService.generateToken(CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
+    }
+    public TokenResponse getTokenForSecondCustomer() throws Exception {
+        return authService.generateToken(SECOND_CUSTOMER_USERNAME, CUSTOMER_PASSWORD);
     }
 
     protected String asJson(Object object) throws com.fasterxml.jackson.core.JsonProcessingException {

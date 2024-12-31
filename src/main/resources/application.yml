@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:dcapp
+    url: jdbc:h2:file:./data/creditmodule;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
     driver-class-name: org.h2.Driver
     username: sa
     password: sa

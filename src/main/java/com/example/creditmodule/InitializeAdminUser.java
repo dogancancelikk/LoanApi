@@ -2,11 +2,12 @@ package com.example.creditmodule;
 
 import com.example.creditmodule.entity.UserEntity;
 import com.example.creditmodule.entity.lookup.UserRole;
+import com.example.creditmodule.exception.ApiException;
 import com.example.creditmodule.repository.UserRepository;
-import com.example.creditmodule.service.UserService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +32,7 @@ public class InitializeAdminUser {
             return;
         }
         if (username == null || password == null) {
-            throw new RuntimeException("Admin couldn't be initialized");
+            throw new ApiException("Admin couldn't be initialized", HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
         UserEntity user = new UserEntity();

@@ -34,7 +34,11 @@ public class WebSecurityConfig {
 
         http
                 .authorizeHttpRequests(requests ->
-                        requests.requestMatchers("/auth/**").permitAll()
+                        requests.requestMatchers("/auth/**",
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-resources/**",
+                                        "/swagger-ui.html").permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -45,6 +49,7 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();

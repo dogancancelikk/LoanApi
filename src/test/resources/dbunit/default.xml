@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dataset>
-    <bank_user
-            user_id="6f9827ce-b5af-43c3-ac7c-74f556b26d5f"
-            username="admin"
-            password="$2a$10$9Q908zZy/J5GaFqx4pc5Xuff3JGvDGQ20qFYZhDjnDs4HYc4.GKpi"
-            role="ROLE_ADMIN"/>
-    <bank_user
-            user_id="e6a6159f-65c5-42a6-8879-6789c4bc65b5"
-            username="test-customer-user"
-            password="$2a$10$HI6CgGM.WgJSZQoxmiD8teVcQrsWMZc10HFgnHw6b5WhOdR1Hbo1."
-            role="ROLE_CUSTOMER"/>
-
-    <customer
-            customer_id="cd4c88f4-c2e2-4b38-83dd-be00a65cea4a"
-            user_id="e6a6159f-65c5-42a6-8879-6789c4bc65b5"
-            credit_limit="25.0"
-            used_credit_limit="0.0"
-            name="name"
-            surname="surname"
-    />
+    <bank_user/>
+    <customer/>
+    <loan/>
+    <loan_installment/>
 </dataset>

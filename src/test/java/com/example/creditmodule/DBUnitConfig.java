@@ -3,7 +3,6 @@ package com.example.creditmodule;
 import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.ext.h2.H2DataTypeFactory;
-import org.dbunit.ext.postgresql.PostgresqlDataTypeFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
